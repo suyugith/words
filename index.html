@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="theme-color" content="#6366f1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>Gravity Vocab</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="fonts/inter.css">
+</head>
+
+<body>
+    <div id="app">
+        <!-- Dashboard View -->
+        <section id="dashboard" class="view active">
+            <header class="app-header">
+                <h1>Gravity Vocab</h1>
+                <div class="progress-summary">
+                    <div class="stat-card">
+                        <span class="stat-value" id="total-learned">0</span>
+                        <span class="stat-label">已学单词</span>
+                    </div>
+                </div>
+            </header>
+
+            <div class="day-list-container">
+                <h2>学习计划</h2>
+                <div id="days-grid" class="days-grid">
+                    <!-- Days injected by JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Study View -->
+        <section id="study-view" class="view">
+            <header class="view-header">
+                <button class="back-btn">← 返回</button>
+                <span><span id="study-day-label">第 1 天</span> (<span id="study-index">1</span>/<span
+                        id="study-total">20</span>)</span>
+            </header>
+
+            <div class="card-container">
+                <div class="word-card" id="study-card">
+                    <!-- Content injected by JS -->
+                </div>
+            </div>
+
+            <div class="study-controls">
+                <button id="prev-word" class="secondary-btn">上一个</button>
+                <button id="next-word" class="primary-btn">下一个</button>
+                <button id="start-test-btn" class="primary-btn hidden">开始测试</button>
+            </div>
+        </section>
+
+        <!-- Test View -->
+        <section id="test-view" class="view">
+            <header class="view-header">
+                <button class="back-btn">← 退出</button>
+                <span>测试中 - 剩余 <span id="test-remaining">20</span> 个</span>
+            </header>
+
+            <div class="test-container">
+                <div class="word-card test-card" id="test-card">
+                    <div class="card-front">
+                        <h2 id="test-word">example</h2>
+                        <div class="phonetics" id="test-phonetics"></div>
+                        <p class="hint">点击查看详情</p>
+                    </div>
+                    <div class="card-back hidden" id="test-back-content">
+                        <!-- Detailed content injected by JS -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="test-controls" id="test-controls">
+                <button id="show-answer-btn" class="primary-btn">查看答案</button>
+                <div class="answer-actions hidden" id="answer-actions">
+                    <button class="action-btn forgot" onclick="app.handleTestResult(false)">
+                        <span class="icon">✕</span> 没记住
+                    </button>
+                    <button class="action-btn remembered" onclick="app.handleTestResult(true)">
+                        <span class="icon">✓</span> 记住了
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Completion View -->
+        <section id="completion-view" class="view">
+            <div class="completion-content">
+                <div class="success-icon">🎉</div>
+                <h2>今日任务完成！</h2>
+                <p>你已经掌握了今天的20个单词。</p>
+                <div class="stats">
+                    <p>总共已学：<span id="completion-total">0</span></p>
+                </div>
+                <button class="primary-btn" onclick="app.completeDay()">完成并进入下一天</button>
+            </div>
+        </section>
+    </div>
+
+    <script src="words_data.js"></script>
+    <script src="app.js"></script>
+</body>
+
+</html>
