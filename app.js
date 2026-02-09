@@ -120,6 +120,11 @@ const app = {
         cardContainer.innerHTML = this.generateCardContent(wordData);
         document.getElementById('study-index').textContent = this.state.studyIndex + 1;
         document.getElementById('study-total').textContent = this.state.todayWords.length;
+
+        // Scroll the card container and page to top
+        cardContainer.scrollTop = 0;
+        document.querySelector('.card-container')?.scrollTo(0, 0);
+        window.scrollTo(0, 0);
     },
 
     generateCardContent(data) {
